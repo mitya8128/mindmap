@@ -1,0 +1,1 @@
+tool for automatically build mindmaps or mindmap-like associative structures  
