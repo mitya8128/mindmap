@@ -1,0 +1,6 @@
+gensim
+jupyter
+nltk
+numpy
+russian_tagsets
+pymorphy2
