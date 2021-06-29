@@ -1,8 +1,8 @@
-from .utils import*
+from app.utils import*
 
 
 to_ud, morph = load_nlp_engines()
-model, index2word_set = load_model()
+model = load_model()
 
 
 # make iterative algorithmic mindmap
@@ -20,10 +20,10 @@ def make_mindmap_simple(word, model):
 
 
 # formatter
-list_questions = ['зачем', 'причина', 'план', 'исполнение']
+#list_questions = ['зачем', 'причина', 'план', 'исполнение']
 
 # make iterative algorithmic mindmap with formatter
-def make_mindmap_formatter(word, model):
+def make_mindmap_formatter(word, model, list_questions):
     lst = model.most_similar(word, topn=5)
     new_list = []
     for element in lst:
@@ -35,3 +35,11 @@ def make_mindmap_formatter(word, model):
             lst_element = model.most_similar(positive=[el, sentence_tag_pymorphy(list_questions[i])], topn=5)
             lst_final.append(lst_element)
     return word, lst, lst_final
+
+
+#TODO
+# - fix logic of functions
+# - error handler (word not in w2v-dictionary)
+# - add the ability to customize the search depth
+# - display of similar entities in adjacent branches ("advanced analytics")
+# - draw mindmap as a graph

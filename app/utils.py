@@ -4,7 +4,7 @@ import nltk
 from russian_tagsets import converters
 from pymorphy2 import MorphAnalyzer
 from collections import Counter
-from .config import Configuration
+from config import Configuration
 
 
 config = Configuration()
@@ -19,9 +19,7 @@ def load_nlp_engines():
 def load_model():
     model_path = config.MODEL_PATH
     model = KeyedVectors.load_word2vec_format(model_path, binary=True)
-    index2word_set = set(model.index2word)
-
-    return model, index2word_set
+    return model
 
 
 def avg_feature_vectorizer(sentence, model, num_features, index2word_set):
@@ -52,7 +50,7 @@ def cosine(a, b):
     return cos
 
 
-def sentence_tag_pymorphy(sentence: str) -> list:
+def sentence_tag_pymorphy(sentence: str) -> str:
     sentence = nltk.word_tokenize(sentence)
     parsed = []
     for word in sentence:
